@@ -3,6 +3,7 @@
 namespace src\handlers;
 
 use src\models\Post;
+use src\models\UserRelation;
 
 class PostHandler
 {
@@ -17,5 +18,17 @@ class PostHandler
                 'created_at' => date('Y-m-d H:i:s')
             ])->execute();
         }
+    }
+
+    public static function getHomeFeed($id_user)
+    {
+        $user_list = UserRelation::select()->where('user_from', $id_user)->get();
+        $users = [];
+        foreach ($user_list as $user_item) {
+            $users[] = $user_item['user_to'];
+        }
+        $users[] = $id_user;
+
+        print_r($users);
     }
 }
