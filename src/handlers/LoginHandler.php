@@ -54,9 +54,9 @@ class LoginHandler
         $token = md5(time() . rand(0, 9999) . time());
 
         User::insert([
+            'name' => $name,
             'email' => $email,
             'password' => $hash,
-            'name' => $name,
             'birthdate' => $birthdate,
             'token' => $token
         ])->execute();
