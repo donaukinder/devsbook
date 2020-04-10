@@ -42,6 +42,11 @@ class PostHandler
             $newPost->type = $postItem['type'];
             $newPost->body = $postItem['body'];
             $newPost->created_at = $postItem['created_at'];
+            $newPost->mine = false;
+
+            if ($postItem['id_user'] == $id_user) {
+                $newPost->mine = true;
+            }
 
             $newUser = User::select()
                 ->where('id', $postItem['id_user'])
@@ -50,6 +55,11 @@ class PostHandler
             $newPost->user->id = $newUser['id'];
             $newPost->user->name = $newUser['name'];
             $newPost->user->avatar = $newUser['avatar'];
+
+            $newPost->likeCount = 0;
+            $newPost->liked = false;
+
+            $newPost->comments = [];
 
             $posts[] = $newPost;
         }
