@@ -21,9 +21,13 @@ class PostHandler
         }
     }
 
-    public static function getHomeFeed($id_user)
+    public static function getHomeFeed($id_user, $page)
     {
-        $user_list = UserRelation::select()->where('user_from', $id_user)->get();
+        $perPage = 2;
+
+        $user_list = UserRelation::select()
+            ->where('user_from', $id_user)
+            ->get();
         $users = [];
         foreach ($user_list as $user_item) {
             $users[] = $user_item['user_to'];
@@ -33,7 +37,13 @@ class PostHandler
         $postList = Post::select()
             ->where('id_user', 'in', $users)
             ->orderBy('created_at', 'desc')
+            ->page($page, $perPage)
             ->get();
+
+        $total = Post::select()
+            ->where('id_user', 'in', $users)
+            ->count();
+        $pageCount = ceil($total / $perPage); 
 
         $posts = [];
         foreach ($postList as $postItem) {
@@ -63,6 +73,10 @@ class PostHandler
 
             $posts[] = $newPost;
         }
-        return $posts;
+        return [
+            'posts' => $posts,
+            'pageCount' => $pageCount,
+            'currentPage' => $page
+        ];
     }
 }
