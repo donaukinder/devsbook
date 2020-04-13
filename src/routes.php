@@ -17,3 +17,7 @@ $router->post('/cadastro', 'LoginController@signupDo');
 
 /** Feed */
 $router->post('/post/new', 'PostController@new');
+
+/** Perfil */
+$router->get('/perfil/{id}', 'ProfileController@index');
+$router->get('/perfil', 'ProfileController@index');
