@@ -74,12 +74,13 @@ DROP TABLE IF EXISTS `posts`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `posts` (
-  `id` int(10) unsigned zerofill NOT NULL,
+  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
+  `id_user` varchar(45) COLLATE utf8_unicode_ci DEFAULT NULL,
   `type` varchar(20) COLLATE utf8_unicode_ci DEFAULT NULL,
   `body` text COLLATE utf8_unicode_ci,
   `created_at` datetime DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -88,6 +89,7 @@ CREATE TABLE `posts` (
 
 LOCK TABLES `posts` WRITE;
 /*!40000 ALTER TABLE `posts` DISABLE KEYS */;
+INSERT INTO `posts` VALUES (1,'1','text','novo post','2020-04-03 12:34:15'),(2,'1','text','Nova Postagem,\r\nde teste','2020-04-10 11:38:06'),(3,'1','text','Novo posts','2020-04-13 17:14:04');
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,6 +126,7 @@ DROP TABLE IF EXISTS `users`;
 /*!40101 SET character_set_client = utf8 */;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `email` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
   `password` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
   `birthdate` date NOT NULL,
@@ -133,7 +136,7 @@ CREATE TABLE `users` (
   `cover` varchar(100) CHARACTER SET utf8 DEFAULT 'cover.jpg',
   `token` varchar(200) COLLATE utf8_unicode_ci DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -142,6 +145,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
+INSERT INTO `users` VALUES (1,'Higor','hcn@hcn.com','$2y$10$YSgAFwyRnnKX29Hf8EUjIOBGIl2dN1mDJO3hKr5DmIdTxsQAp/m9S','1996-02-12',NULL,NULL,'default.jpg','cover.jpg','ef74a1ac3bc6cf6db72923f11b5f2116');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -154,4 +158,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-03-31 14:55:41
+-- Dump completed on 2020-04-13 19:21:38
