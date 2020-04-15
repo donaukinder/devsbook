@@ -20,8 +20,13 @@ class ProfileController extends Controller
 
     public function index($atts = [])
     {
-        $this->render(
-            'profile',
+        $id = $this->loggedUser->id;
+
+        if (!empty($atts['id'])) {
+            $id = $atts['id'];
+        }
+
+        $this->render('profile',
             ['loggedUser' => $this->loggedUser
             ]
         );
