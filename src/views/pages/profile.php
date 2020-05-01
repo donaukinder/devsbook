@@ -44,7 +44,7 @@
 
                         <div class="user-info-mini">
                             <img src="<?= $base; ?>/assets/images/calendar.png" />
-                            <?= $user->birthdate; ?> (90 anos)
+                            <?= date('d/m/Y', strtotime($user->birthdate)); ?> (<?= $user->ageYears; ?> anos)
                         </div>
 
                         <?php if (!empty($user->city)) : ?>
@@ -106,39 +106,15 @@
                         </div>
                     </div>
                     <div class="box-body row m-20">
+                        
+                        <?php for ($i=0; $i < 4; $i++): ?>
 
+                        <?php endfor;?>
                         <div class="user-photo-item">
                             <a href="#modal-1" rel="modal:open">
                                 <img src="<?= $base; ?>/media/uploads/1.jpg" />
                             </a>
                             <div id="modal-1" style="display:none">
-                                <img src="<?= $base; ?>/media/uploads/1.jpg" />
-                            </div>
-                        </div>
-
-                        <div class="user-photo-item">
-                            <a href="#modal-2" rel="modal:open">
-                                <img src="<?= $base; ?>/media/uploads/1.jpg" />
-                            </a>
-                            <div id="modal-2" style="display:none">
-                                <img src="<?= $base; ?>/media/uploads/1.jpg" />
-                            </div>
-                        </div>
-
-                        <div class="user-photo-item">
-                            <a href="#modal-3" rel="modal:open">
-                                <img src="<?= $base; ?>/media/uploads/1.jpg" />
-                            </a>
-                            <div id="modal-3" style="display:none">
-                                <img src="<?= $base; ?>/media/uploads/1.jpg" />
-                            </div>
-                        </div>
-
-                        <div class="user-photo-item">
-                            <a href="#modal-4" rel="modal:open">
-                                <img src="<?= $base; ?>/media/uploads/1.jpg" />
-                            </a>
-                            <div id="modal-4" style="display:none">
                                 <img src="<?= $base; ?>/media/uploads/1.jpg" />
                             </div>
                         </div>
